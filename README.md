@@ -24,9 +24,9 @@
 | S | 기초 작업 |
 
 
-‼️ 예시) F_ADJUSTMENT_01 - 검색 기능 구현
-
-## 📌 <strong>Commit Prefix</strong>
+‼️ 예시) B_SEARCH_01 - 검색 기능 구현
+</br> </br>
+## - Commit Prefix
 커밋 메세지 : [commit 태그] 추가한 코드에 대해 간략히 설명
 
 기본 Rule
@@ -38,9 +38,8 @@
 `Add`<br>|기초 세팅 및 코드 수정
 `Refactor`<br> |코드의 구조를 재조정
 `Test`<br>|테스트 코드 관련
-`Docs`<br>|리드미 수정
+`Docs`<br>|README 수정
 `Chore`<br>|위에 모든 태그에 해당하지 않을 시
-
 
 
 ‼️ 예시) [Feat] 검색 기능 추가
