@@ -43,8 +43,7 @@ ALTER TABLE `APPLY` ADD CONSTRAINT `PK_APPLY` PRIMARY KEY (
     );
 
 ALTER TABLE `RECRUIT` ADD CONSTRAINT `PK_RECRUIT` PRIMARY KEY (
-                                                               `num`,
-                                                               `company_id`
+                                                               `num`
     );
 
 ALTER TABLE `APPLY` ADD CONSTRAINT `FK_USER_TO_APPLY_1` FOREIGN KEY (
