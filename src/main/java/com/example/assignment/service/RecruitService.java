@@ -6,5 +6,6 @@ import com.example.assignment.entity.Recruit;
 public interface RecruitService {
     RecruitDTO saveRecruit(Recruit recruit);
     RecruitDTO updateRecruit(int num, RecruitDTO recruitDTO);
+    String deleteRecruit(int num);
 
 }

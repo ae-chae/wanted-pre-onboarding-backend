@@ -49,6 +49,18 @@ public class RecruitServiceImpl implements RecruitService {
         }
     }
 
+    @Override
+    public String deleteRecruit(int num) {
+        Optional<Recruit> optionalRecruit = recruitRepository.findById(num);
+        if (optionalRecruit.isPresent()) {
+            Recruit recruit = optionalRecruit.get();
+            recruitRepository.delete(recruit);
+            return num + " 번 공고가 삭제되었습니다.";
+        } else {
+            throw new RuntimeException(num + " 번 공고는 존재하지 않습니다.");
+        }
+    }
+
     private RecruitDTO convertToDTO(Recruit recruit) {
         return new RecruitDTO(
                 recruit.getNum(),
