@@ -22,7 +22,7 @@ public class RecruitController {
         return ResponseEntity.ok(createdRecruit);
     }
 
-    @PatchMapping("/{num}")
+    @PatchMapping("/modify/{num}")
     public ResponseEntity<?> updateRecruit(@PathVariable int num, @RequestBody RecruitDTO recruitDTO) {
         try {
             RecruitDTO updatedRecruit = recruitService.updateRecruit(num, recruitDTO);
