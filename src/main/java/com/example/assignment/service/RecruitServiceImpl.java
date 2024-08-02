@@ -1,12 +1,15 @@
 package com.example.assignment.service;
 
 import com.example.assignment.dto.RecruitDTO;
+import com.example.assignment.dto.RecruitSummaryDTO;
 import com.example.assignment.entity.Recruit;
 import com.example.assignment.repository.RecruitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RecruitServiceImpl implements RecruitService {
@@ -59,6 +62,25 @@ public class RecruitServiceImpl implements RecruitService {
         } else {
             throw new RuntimeException(num + " 번 공고는 존재하지 않습니다.");
         }
+    }
+
+    @Override
+    public List<RecruitSummaryDTO> getAllRecruits() {
+        List<Recruit> recruits = recruitRepository.findAll();
+        return recruits.stream()
+                .map(this::convertToSummaryDTO)
+                .collect(Collectors.toList());
+    }
+
+    private RecruitSummaryDTO convertToSummaryDTO(Recruit recruit) {
+        return new RecruitSummaryDTO(
+                recruit.getNum(),
+                recruit.getCompanyId(),
+                recruit.getPosition(),
+                recruit.getReward(),
+                recruit.getTech(),
+                recruit.getDistrict()
+        );
     }
 
     private RecruitDTO convertToDTO(Recruit recruit) {

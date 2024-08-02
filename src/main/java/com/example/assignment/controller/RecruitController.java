@@ -2,12 +2,15 @@ package com.example.assignment.controller;
 
 
 import com.example.assignment.dto.RecruitDTO;
+import com.example.assignment.dto.RecruitSummaryDTO;
 import com.example.assignment.entity.Recruit;
 import com.example.assignment.service.RecruitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/recruit")
@@ -43,5 +46,12 @@ public class RecruitController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
+    @GetMapping
+    public ResponseEntity<List<RecruitSummaryDTO>> getAllRecruits() {
+        List<RecruitSummaryDTO> recruits = recruitService.getAllRecruits();
+        return ResponseEntity.ok(recruits);
+    }
+
 
 }
