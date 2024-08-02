@@ -34,4 +34,14 @@ public class RecruitController {
         }
     }
 
+    @DeleteMapping("/remove/{num}")
+    public ResponseEntity<String> deleteRecruit(@PathVariable int num) {
+        try {
+            String message = recruitService.deleteRecruit(num);
+            return ResponseEntity.ok(message);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 }
