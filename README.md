@@ -13,7 +13,7 @@
 
 
 
-### - PR, issue 규칙
+## PR, issue 규칙
 
 기능 태그_feature_작업 버전 - 기능 설명
 > feature는 작업 기능을 설명할 수 있는 대문자 단어
@@ -26,7 +26,7 @@
 
 ‼️ 예시) B_SEARCH_01 - 검색 기능 구현
 </br> </br>
-## - Commit Prefix
+## Commit Prefix
 커밋 메세지 : [commit 태그] 추가한 코드에 대해 간략히 설명
 
 기본 Rule
