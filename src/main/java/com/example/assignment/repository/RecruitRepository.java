@@ -10,4 +10,6 @@ import java.util.List;
 public interface RecruitRepository extends JpaRepository<Recruit, Integer> {
     List<Recruit> findByNumOrCompanyIdContainingOrRewardOrTechContainingOrDistrictContainingOrPositionContaining(
             int num, String companyId, Long reward, String tech, String district, String position);
+
+    List<Recruit> findByCompanyId(String companyId);
 }
