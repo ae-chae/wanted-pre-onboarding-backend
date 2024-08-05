@@ -1,7 +1,24 @@
 # wanted pre onboarding backend
+<br/>
+원티드 프리온보딩 인턴십 지원을 위한 사전 과제
+<br/>
+✅ 과제 안내 - https://bow-hair-db3.notion.site/36ea599aa26e40618f4c1bc4c44f9410
+<br/>
+<br/>
+
+## Githyb convention
+✅ [Github convention](https://github.com/ae-chae/wanted-pre-onboarding-backend.wiki.git)
+
+<br/>
+
+# 수행 내용
+## 서비스 개요 및 요구사항을 만족하는 API 서버를 구현
+✅ Java & Spring 사용
+
+## ERD
+![image](https://github.com/user-attachments/assets/596927d9-e493-499b-a49f-048d58dbab2b)
 
 
-# 과제 수행 내용
 ### 1. 채용공고를 등록합니다.
 ```
 POST /recruit/upload
