@@ -19,8 +19,12 @@ public class ApplyController {
     }
 
     @PostMapping
-    public ResponseEntity<ApplyDTO> createApplication(@RequestBody ApplyDTO applyDTO) {
-        ApplyDTO createdApply = applyService.saveApplication(applyDTO);
-        return new ResponseEntity<>(createdApply, HttpStatus.CREATED);
+    public ResponseEntity<?> createApplication(@RequestBody ApplyDTO applyDTO) {
+        try {
+            ApplyDTO createdApply = applyService.saveApplication(applyDTO);
+            return new ResponseEntity<>(createdApply, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 }
