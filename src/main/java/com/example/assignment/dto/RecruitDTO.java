@@ -18,7 +18,7 @@ public class RecruitDTO {
     private String tech;
     private String district;
 
-    // Constructor without companyId (if needed)
+
     public RecruitDTO(int num, String position, Long reward, String detail, String tech, String district) {
         this.num = num;
         this.position = position;
