@@ -1,57 +1,210 @@
 # wanted pre onboarding backend
 
 
+# 과제 수행 내용
+#### 1. 채용공고를 등록합니다.
+```
+POST /recruit/upload
+```
+
+Request (Body)
+```
+{
+  "companyId": "id1",
+  "position": "Developer",
+  "reward": 1000000,
+  "detail": "Full stack developer needed.",
+  "tech": "Java, Spring Boot, React",
+  "district": "서울"
+}
+```
+
+Response (200)
+```
+{
+    "num": 5,
+    "companyId": "id1",
+    "position": "Developer",
+    "reward": 1000000,
+    "detail": "Full stack developer needed.",
+    "tech": "Java, Spring Boot, React",
+    "district": "서울"
+}
+```
+
+<br/>
+#### 2. 채용공고를 수정합니다.
+<br/>
+```
+PATCH /recruit/modify/{ 공고 id }
+```
+
+Request (body)
+```
+{
+	"detail" : "수정 완료"
+}
+```
+
+Response (200)
+```
+{
+    "num": 4,
+    "companyId": "id1",
+    "position": "Designer",
+    "reward": 2000000,
+    "detail": "수정 완료",
+    "tech": "Figma, photoshop",
+    "district": "부산"
+}
+```
+
+<br/>
+ERROR (404 Not Found)
+```
+{ 공고 id } 번 공고는 존재하지 않습니다.
+```
+<br/>
+
+#### 3. 채용공고를 삭제합니다.
+```
+DELETE /recruit/remove/{ 공고 id }
+```
+
+Response (200)
+```
+2 번 공고가 삭제되었습니다.
+```
+
+<br/>
+ERROR (404 Not Found)
+```
+{ 공고 id } 번 공고는 존재하지 않습니다.
+```
+<br/>
 
 
+#### 4. 채용공고 목록을 가져옵니다.
+```
+GET /recruit
+```
 
 
+Response (200)
+```
+[
+    {
+        "num": 1,
+        "companyId": "id1",
+        "position": "Developer",
+        "reward": 1000000,
+        "tech": "Java, Spring Boot, React",
+        "district": "서울"
+    },
+    {
+        "num": 5,
+        "companyId": "id1",
+        "position": "Developer",
+        "reward": 1000000,
+        "tech": "Java, Spring Boot, React",
+        "district": "서울"
+    },
+    {
+        "num": 6,
+        "companyId": "id1",
+        "position": "Designer",
+        "reward": 2000000,
+        "tech": "Figma, photoshop",
+        "district": "부산"
+    },
+    {
+        "num": 7,
+        "companyId": "id2",
+        "position": "Developer",
+        "reward": 500000,
+        "tech": "Python, NodeJS",
+        "district": "성남"
+    },
+    {
+        "num": 8,
+        "companyId": "id2",
+        "position": "Developer",
+        "reward": 1000000,
+        "tech": "React, iOS",
+        "district": "성남"
+    }
+]
+```
 
-## 브랜치 규칙
-- master: 전체 버전을 관리하는 메인 브랜치 <br/>
-  master / { 버전 } 형태 <br/> <br/>
-  
-- feature: 새로운 기능을 개발하는 브랜치 <br/>
-  feature / { 구현 문항 번호 } / { 이슈 번호 } 형태  <br/>
-  feature에서 이슈(기능) 구현이 완료 되면 master 브랜치로 merge <br/> <br/> <br/>
+<br/>
+#### 4-2. 채용공고 검색 기능 구현(선택사항 및 가산점요소).
+```
+GET /recruit/search?search=designer
+```
 
-- test: 테스트 코드를 위한 브랜치
-test / { controller } / { 이슈 번호 } / { 버전 } 형태
-controller test 진행
+Response (200)
+```
+[
+    {
+        "num": 6,
+        "companyId": "id1",
+        "position": "Designer",
+        "reward": 2000000,
+        "tech": "Figma, photoshop",
+        "district": "부산"
+    },
+    {
+        "num": 9,
+        "companyId": "id2",
+        "position": "Designer",
+        "reward": 2000000,
+        "tech": "Figma, Illustrator",
+        "district": "성남"
+    }
+]
+```
+<br/>
+#### 5. 채용 상세 페이지를 가져옵니다.
+#### 해당 회사가 올린 다른 채용공고 가 추가적으로 포함됩니다(선택사항 및 가산점요소).
+```
+GET /recruit/detail/{ 공고 id }
+```
+
+Response (200)
+```
+{
+    "id": 6,
+    "companyName": "원티드",
+    "position": "Designer",
+    "reward": 2000000,
+    "details": "UI/UX designer",
+    "tech": "Figma, photoshop",
+    "district": "부산",
+    "otherJobPostings": [
+        1,
+        5
+    ]
+}
+```
+<br/>
+#### 6. 사용자는 채용공고에 지원합니다(선택사항 및 가산점요소).
+```
+POST /apply
+```
+
+Request (Body)
+```
+{
+    "recruitNum": 5,
+    "userId": "user1"
+}
+```
 
 
-
-
-## pr, issue 규칙
-
-기능 태그_feature_작업 버전 - 기능 설명
-> feature는 작업 기능을 설명할 수 있는 대문자 단어
-
-pr 제목은 해당 이슈 마지막 제목 사용
-
-
-| pr, issue 태그 | 설명 |
-|--------|------|
-| B | 백엔드 작업 |
-| S | 기초 작업 |
-| T | 테스트 작업 |
-
-
-‼️ 예시) B_SEARCH_01 - 검색 기능 구현
-</br> </br>
-## Commit Prefix
-커밋 메세지 : [commit 태그] 추가한 코드에 대해 간략히 설명
-
-기본 Rule
-|commit 태그|설명|
-|---|---|
-`Feat`<br>|기능 추가
-`X`<br>| 코드 삭제
-`Fix`<br>|버그 수정
-`Add`<br>|기초 세팅 및 코드 수정
-`Refactor`<br> |코드의 구조를 재조정
-`Test`<br>|테스트 코드 관련
-`Docs`<br>|README 수정
-`Chore`<br>|위에 모든 태그에 해당하지 않을 시
-
-
-‼️ 예시) [Feat] 검색 기능 추가
+Response (200)
+```
+{
+    "userId": "user1",
+    "recruitNum": 5
+}
+```
