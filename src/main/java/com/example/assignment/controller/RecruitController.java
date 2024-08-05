@@ -5,6 +5,8 @@ import com.example.assignment.dto.RecruitDTO;
 import com.example.assignment.dto.RecruitSummaryDTO;
 import com.example.assignment.entity.Recruit;
 import com.example.assignment.service.RecruitService;
+import com.example.assignment.view.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +52,13 @@ public class RecruitController {
     @GetMapping
     public ResponseEntity<List<RecruitSummaryDTO>> getAllRecruits() {
         List<RecruitSummaryDTO> recruits = recruitService.getAllRecruits();
+        return ResponseEntity.ok(recruits);
+    }
+
+    @GetMapping("/search")
+    @JsonView(Views.Summary.class)
+    public ResponseEntity<List<Recruit>> searchRecruits(@RequestParam("search") String keyword) {
+        List<Recruit> recruits = recruitService.searchRecruits(keyword);
         return ResponseEntity.ok(recruits);
     }
 

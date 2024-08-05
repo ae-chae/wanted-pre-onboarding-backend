@@ -72,6 +72,20 @@ public class RecruitServiceImpl implements RecruitService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Recruit> searchRecruits(String keyword) {
+        try {
+            int num = Integer.parseInt(keyword);
+            Long reward = Long.parseLong(keyword);
+            return recruitRepository.findByNumOrCompanyIdContainingOrRewardOrTechContainingOrDistrictContainingOrPositionContaining(
+                    num, keyword, reward, keyword, keyword, keyword);
+        } catch (NumberFormatException e) {
+            // If parsing fails, search only the text fields
+            return recruitRepository.findByNumOrCompanyIdContainingOrRewardOrTechContainingOrDistrictContainingOrPositionContaining(
+                    -1, keyword, -1L, keyword, keyword, keyword);
+        }
+    }
+
     private RecruitSummaryDTO convertToSummaryDTO(Recruit recruit) {
         return new RecruitSummaryDTO(
                 recruit.getNum(),

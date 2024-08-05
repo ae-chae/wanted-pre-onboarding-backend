@@ -11,4 +11,5 @@ public interface RecruitService {
     RecruitDTO updateRecruit(int num, RecruitDTO recruitDTO);
     String deleteRecruit(int num);
     List<RecruitSummaryDTO> getAllRecruits();
+    List<Recruit> searchRecruits(String keyword);
 }
