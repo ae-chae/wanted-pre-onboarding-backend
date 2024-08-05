@@ -2,6 +2,10 @@
 
 
 
+
+
+
+
 ## 브랜치 규칙
 - master: 전체 버전을 관리하는 메인 브랜치 <br/>
   master / { 버전 } 형태 <br/> <br/>
@@ -10,18 +14,26 @@
   feature / { 구현 문항 번호 } / { 이슈 번호 } 형태  <br/>
   feature에서 이슈(기능) 구현이 완료 되면 master 브랜치로 merge <br/> <br/> <br/>
 
+- test: 테스트 코드를 위한 브랜치
+test / { controller } / { 이슈 번호 } / { 버전 } 형태
+controller test 진행
 
 
 
-## PR, issue 규칙
+
+## pr, issue 규칙
 
 기능 태그_feature_작업 버전 - 기능 설명
 > feature는 작업 기능을 설명할 수 있는 대문자 단어
 
-| PR, issue 태그 | 설명 |
+pr 제목은 해당 이슈 마지막 제목 사용
+
+
+| pr, issue 태그 | 설명 |
 |--------|------|
 | B | 백엔드 작업 |
 | S | 기초 작업 |
+| T | 테스트 작업 |
 
 
 ‼️ 예시) B_SEARCH_01 - 검색 기능 구현
