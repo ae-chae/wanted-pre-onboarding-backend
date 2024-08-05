@@ -1,6 +1,7 @@
 package com.example.assignment.controller;
 
 
+import com.example.assignment.dto.CustomRecruitDTO;
 import com.example.assignment.dto.RecruitDTO;
 import com.example.assignment.dto.RecruitSummaryDTO;
 import com.example.assignment.entity.Recruit;
@@ -60,6 +61,16 @@ public class RecruitController {
     public ResponseEntity<List<Recruit>> searchRecruits(@RequestParam("search") String keyword) {
         List<Recruit> recruits = recruitService.searchRecruits(keyword);
         return ResponseEntity.ok(recruits);
+    }
+
+    @GetMapping("/detail/{num}")
+    public ResponseEntity<Object> getCustomRecruitById(@PathVariable int num) {
+        try {
+            CustomRecruitDTO customRecruit = recruitService.getCustomRecruitById(num);
+            return ResponseEntity.ok(customRecruit);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.assignment.service;
 
+import com.example.assignment.dto.CustomRecruitDTO;
 import com.example.assignment.dto.RecruitDTO;
 import com.example.assignment.dto.RecruitSummaryDTO;
 import com.example.assignment.entity.Recruit;
@@ -12,4 +13,5 @@ public interface RecruitService {
     String deleteRecruit(int num);
     List<RecruitSummaryDTO> getAllRecruits();
     List<Recruit> searchRecruits(String keyword);
+    CustomRecruitDTO getCustomRecruitById(int num);
 }

@@ -1,5 +1,6 @@
 package com.example.assignment.service;
 
+import com.example.assignment.dto.CustomRecruitDTO;
 import com.example.assignment.dto.RecruitDTO;
 import com.example.assignment.dto.RecruitSummaryDTO;
 import com.example.assignment.entity.Recruit;
@@ -85,6 +86,32 @@ public class RecruitServiceImpl implements RecruitService {
                     -1, keyword, -1L, keyword, keyword, keyword);
         }
     }
+
+    public CustomRecruitDTO getCustomRecruitById(int num) {
+        Optional<Recruit> optionalRecruit = recruitRepository.findById(num);
+        if (optionalRecruit.isPresent()) {
+            Recruit recruit = optionalRecruit.get();
+            List<Integer> otherJobPostings = recruitRepository.findByCompanyId(recruit.getCompanyId())
+                    .stream()
+                    .filter(r -> r.getNum() != num)
+                    .map(Recruit::getNum)
+                    .collect(Collectors.toList());
+
+            return new CustomRecruitDTO(
+                    recruit.getNum(),
+                    recruit.getCompany().getName(),
+                    recruit.getPosition(),
+                    recruit.getReward(),
+                    recruit.getDetail(),
+                    recruit.getTech(),
+                    recruit.getDistrict(),
+                    otherJobPostings
+            );
+        } else {
+            throw new RuntimeException(num + " 번 공고는 존재하지 않습니다.");
+        }
+    }
+
 
     private RecruitSummaryDTO convertToSummaryDTO(Recruit recruit) {
         return new RecruitSummaryDTO(
