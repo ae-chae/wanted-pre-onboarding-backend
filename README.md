@@ -6,7 +6,7 @@
 <br/>
 <br/>
 
-## Githyb convention
+## Github convention
 ✅ [Github convention](https://github.com/ae-chae/wanted-pre-onboarding-backend.wiki.git)
 
 <br/>
